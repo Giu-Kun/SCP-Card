@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCP Foundation ID Card</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+        }
+        .id-card {
+            border: 2px solid #fff;
+            padding: 20px;
+            width: 300px;
+            margin: 0 auto;
+        }
+        .photo {
+            width: 100px;
+            height: 100px;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="id-card">
+        <h1>SCP Foundation ID</h1>
+        <p>Name: Dr. Bright</p>
+        <p>Designation: Senior Researcher</p>
+        <p>ID: SCP-963</p>
+        <p>Clearance Level: Level 4</p>
+        <p>Site: Site-19</p>
+        <p>Valid Through: [Expiration Date]</p>
+        <p>Assignment: SCP-963 Containment and Research</p>
+        <p>Contact: Dr. Bright's Office - [Contact Info]</p>
+    </div>
+</body>
+</html>
