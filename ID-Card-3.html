@@ -56,8 +56,8 @@
         <p>Site: Site-19</p>
         <p>Valid Through: 19/10/2025</p>
         <p>Assignment: SCP-963 Containment and Research</p>
-        <p>Contact: <span class="contact-info" onclick="toggleAdditionalInfo()">Click to Enter Employee ID and Password</span></p>
-
+        <p>Contact: <span class="contact-info" onclick="toggleAdditionalInfo()">Click to Verify Access</span></p>
+        
         <img src="images/SCP_Foundation_logo.png" alt="SCP Foundation Logo" class="scp-image">
 
         <div class="additional-info" id="unfolded-info">
@@ -67,25 +67,42 @@
     </div>
 
     <div class="loading-screen" id="loading-screen">
-        <p>Loading... Verifying Employee ID and Password</p>
+        <p>Loading... Verifying Access</p>
     </div>
 
     <script>
         function toggleAdditionalInfo() {
-            var employeeID = prompt("Enter Employee ID:");
-            var password = prompt("Enter Password:");
-            var loadingScreen = document.getElementById("loading-screen");
+            var accessDropdown = document.createElement("select");
+            accessDropdown.innerHTML = `
+                <option value="noaccess">Select Access Level</option>
+                <option value="level1">Level 1</option>
+                <option value="level2">Level 2</option>
+                <option value="level3">Level 3</option>
+                <option value="level4">Level 4</option>
+            `;
 
-            if (employeeID === "4623" && password === "securepassword") {
-                loadingScreen.style.display = "block";
-                setTimeout(function() {
-                    loadingScreen.style.display = "none";
-                    var additionalInfo = document.getElementById("unfolded-info");
-                    additionalInfo.style.display = "block";
-                }, 2000); // Simulate a 2-second verification process
-            } else {
-                alert("Invalid Employee ID or Password. Access Denied.");
-            }
+            var additionalInfo = document.getElementById("unfolded-info");
+            additionalInfo.innerHTML = "";
+            additionalInfo.appendChild(accessDropdown);
+
+            accessDropdown.addEventListener("change", function() {
+                var selectedAccess = accessDropdown.value;
+                var loadingScreen = document.getElementById("loading-screen");
+
+                if (selectedAccess === "noaccess") {
+                    alert("Please select an access level.");
+                } else {
+                    loadingScreen.style.display = "block";
+                    setTimeout(function() {
+                        loadingScreen.style.display = "none";
+                        additionalInfo.innerHTML = `
+                            <p>Access Level: ${selectedAccess}</p>
+                            <p>Special Qualifications: Able to interact with SCP-963 "The Immortality Gauntlet"</p>
+                            <p>Notes: Dr. Bright's consciousness can possess any living being by wearing SCP-963</p>
+                        `;
+                    }, 2000); // Simulate a 2-second verification process
+                }
+            });
         }
     </script>
 </body>
