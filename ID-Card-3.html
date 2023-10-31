@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCP Foundation ID Card</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+        }
+        .id-card {
+            border: 2px solid #fff;
+            padding: 20px;
+            width: 300px;
+            margin: 0 auto;
+        }
+        .contact-info {
+            text-decoration: underline;
+            cursor: pointer;
+            color: blue;
+        }
+        .additional-info {
+            display: none;
+            margin-top: 15px;
+        }
+        .loading-screen {
+            display: none;
+            background-color: rgba(255, 255, 255, 0.7);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+        .scp-image {
+            width: 150px;
+            height: auto;
+            margin: 20px auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="id-card">
+        <h1>SCP Foundation ID</h1>
+        <p>Name: Dr. Jack Bright</p>
+        <p>Designation: Senior Researcher</p>
+        <p>ID:  4623</p>
+        <p>Clearance Level: Level 4</p>
+        <p>Site: Site-19</p>
+        <p>Valid Through: 19/10/2025</p>
+        <p>Assignment: SCP-963 Containment and Research</p>
+        <p>Contact: <span class="contact-info" onclick="toggleAdditionalInfo()">Click to Enter Employee ID and Password</span></p>
+
+        <img src="images/SCP_Foundation_logo.png" alt="SCP Foundation Logo" class="scp-image">
+
+        <div class="additional-info" id="unfolded-info">
+            <p>Special Qualifications: Able to interact with SCP-963 "The Immortality Gauntlet"</p>
+            <p>Notes: Dr. Bright's consciousness can possess any living being by wearing SCP-963</p>
+        </div>
+    </div>
+
+    <div class="loading-screen" id="loading-screen">
+        <p>Loading... Verifying Employee ID and Password</p>
+    </div>
+
+    <script>
+        function toggleAdditionalInfo() {
+            var employeeID = prompt("Enter Employee ID:");
+            var password = prompt("Enter Password:");
+            var loadingScreen = document.getElementById("loading-screen");
+
+            if (employeeID === "4623" && password === "securepassword") {
+                loadingScreen.style.display = "block";
+                setTimeout(function() {
+                    loadingScreen.style.display = "none";
+                    var additionalInfo = document.getElementById("unfolded-info");
+                    additionalInfo.style.display = "block";
+                }, 2000); // Simulate a 2-second verification process
+            } else {
+                alert("Invalid Employee ID or Password. Access Denied.");
+            }
+        }
+    </script>
+</body>
+</html>
