@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCP Foundation ID Card</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+        }
+        .id-card {
+            background-color: #000;
+            border: 2px solid #fff;
+            padding: 20px;
+            width: 300px;
+            margin: 0 auto;
+        }
+        .id-card h1 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .id-card p {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        .contact-button {
+            background-color: #ff6600; /* SCP Foundation color */
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .additional-info {
+            display: none;
+            margin-top: 15px;
+        }
+        .scp-image {
+            width: 150px;
+            height: auto;
+            margin: 20px auto;
+            display: block;
+        }
+        .console {
+            background-color: #333;
+            color: #00ff00;
+            padding: 10px;
+            margin-top: 20px;
+            text-align: left;
+            font-size: 12px;
+            white-space: pre-line;
+            display: none; /* Hide console by default */
+        }
+        .motto {
+            font-size: 12px;
+            color: #666;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="id-card">
+        <img src="images/SCP_Foundation_logo.png" alt="SCP Foundation Logo" class="scp-image">
+        <h1>SCP Foundation ID</h1>
+        <p>Name: Giu Peritia</p>
+        <p>Designation: Assistant Researcher</p>
+        <p>Clearance Level: Level 2</p>
+        <p>Blood Type: O+</p>
+        <div class="motto">"Secure, Contain, Protect"</div>
+        
+        <button class="contact-button" id="verify-button" onclick="verifyIDCard()">Verify</button>
+        <div class="additional-info" id="verification-info" style="display: none;">
+            <p>Valid Through: <span id="expiry-countdown"></span></p>
+            <p>Security Badge: <span id="security-badge">T2K-7890</span></p>
+            <p>Assignment: Assisting research from Dr. Jack Bright</p>
+            <p>Site: Site-19</p>
+            <button class="contact-button" id="redirect-button" style="display:none" onclick="redirectToFoundation()">Redirect</button>
+        </div>
+    </div>
+
+    <div class="console" id="console">
+    </div>
+
+    <script>
+       function verifyIDCard() {
+    var verifyButton = document.getElementById("verify-button");
+    var verificationInfo = document.getElementById("verification-info");
+    var expiryCountdown = document.getElementById("expiry-countdown");
+    var securityBadge = document.getElementById("security-badge");
+    var consoleDisplay = document.getElementById("console");
+
+    // Display console
+    consoleDisplay.style.display = "block";
+
+    // Clear existing console messages
+    consoleDisplay.textContent = "";
+
+    // Define messages, corresponding delay times, and colors in an array of objects
+    var messages = [
+        { message: "Initiating security clearance check...", delay: 1500, color: "#00ff00" },
+        { message: "IP Address: 112.39.7.212", delay: 500, color: "#00ff00" },
+        { message: "Security clearance verified.", delay: 1000, color: "#00ff00" },
+        { message: "Creating Secure Tunnel to protected Server", delay: 1000, color: "#00ff00" },
+        { message: "Establishing encrypted connection...", delay: 200, color: "#00ff00" },
+        { message: "Access granted to Level 2 resources.", delay: 800, color: "#00ff00" },
+        { message: "Downloading classified documents...", delay: 1200, color: "#00ff00" },
+        { message: "Scanning for anomalous activity...", delay: 4200, color: "#ff0000" },
+        { message: "Threat assessment: Low risk", delay: 200, color: "#00ff00" },
+        { message: "Updating security protocols...", delay: 1500, color: "#00ff00" },
+        { message: "Identity verified as Giu Peritia.", delay: 500, color: "#00ff00" },
+        { message: "Proceeding with secure access...", delay: 500, color: "#00ff00" },
+        { message: "Decrypting research data...", delay: 4000, color: "#00ff00" },
+        { message: "Welcome Giu Peritia", delay: 700, color: "#00ff00" },
+        { message: "Verification successful.", delay: 500, color: "#00ff00" },
+        { message: "Redirection enabled.", delay: 1000, color: "#00ff00" }
+    ];
+
+    // Function to display messages with appropriate timing and color
+    function displayMessages(index) {
+        if (index < messages.length) {
+            writeToConsole(messages[index].message, messages[index].color);
+            setTimeout(function () {
+                displayMessages(index + 1);
+            }, messages[index].delay);
+        } else {
+            // Display additional information and enable redirection
+            expiryCountdown.textContent = "1 year";
+            securityBadge.textContent = "Verified";
+            verifyButton.style.display = "none";
+            verificationInfo.style.display = "block";
+            document.getElementById("redirect-button").style.display = "inline-block";
+        }
+    }
+
+    // Start displaying messages
+    displayMessages(0);
+}
+
+        function redirectToFoundation() {
+            writeToConsole("Redirecting to SCP Foundation website...");
+            setTimeout(function() {
+                window.location.href = "https://scp-wiki.wikidot.com";
+            }, 2000); // Redirect after 2 seconds
+        }
+
+        function writeToConsole(message, color) {
+            var consoleDisplay = document.getElementById("console");
+            consoleDisplay.textContent += "\n" + message;
+            consoleDisplay.style.color = color;
+        }
+    </script>
+</body>
+</html>
